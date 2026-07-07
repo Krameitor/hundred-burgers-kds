@@ -57,21 +57,16 @@ const TrackerView = (() => {
     return `
       <div class="order-card status-${status} ${isConfirming ? 'confirming' : ''}" id="card-${order.id}" onclick="TrackerView.requestConfirm('${order.id}')">
         
-        <!-- Status bar -->
+        <!-- Status bar left -->
         <div class="card-status-bar"></div>
 
-        <!-- Card header -->
-        <div class="card-header">
-          <span class="order-id">${order.id}</span>
-          <span class="type-badge ${typeBadgeClass}">${typeLabel}</span>
+        <!-- Hero: origen + número — lo más visible -->
+        <div class="card-hero">
+          <span class="card-type-hero ${typeBadgeClass}">${typeLabel}</span>
+          <span class="card-id-small">${order.id}</span>
         </div>
 
-        <!-- Timer -->
-        <div class="card-timer status-text-${status}" id="timer-${order.id}">
-          ${formatDuration(elapsed)}
-        </div>
-
-        <!-- Items -->
+        <!-- Items — cuerpo principal -->
         <div class="card-items">
           ${order.items.map(i => `
             <div class="card-item">
@@ -83,6 +78,12 @@ const TrackerView = (() => {
 
         <!-- Notes -->
         ${order.notes ? `<div class="card-notes">📝 ${order.notes}</div>` : ''}
+
+        <!-- Footer: timer compacto -->
+        <div class="card-footer status-footer-${status}">
+          <span class="card-timer-small status-text-${status}" id="timer-${order.id}">⏱ ${formatDuration(elapsed)}</span>
+          <span class="card-tap-hint">Toca para entregar</span>
+        </div>
 
         <!-- Confirmation overlay -->
         ${isConfirming ? `
@@ -118,11 +119,13 @@ const TrackerView = (() => {
       const status = getOrderStatus(order.createdAt);
       const elapsed = getElapsedSeconds(order.createdAt);
 
-      timerEl.textContent = formatDuration(elapsed);
-      timerEl.className = `card-timer status-text-${status}`;
+      timerEl.textContent = `⏱ ${formatDuration(elapsed)}`;
+      timerEl.className = `card-timer-small status-text-${status}`;
 
-      // Update card status class
+      // Update card and footer status class
       cardEl.className = cardEl.className.replace(/status-(green|yellow|red)/g, `status-${status}`);
+      const footerEl = cardEl.querySelector('.card-footer');
+      if (footerEl) footerEl.className = `card-footer status-footer-${status}`;
     });
 
     // Update red badge

@@ -351,28 +351,32 @@ body {
 .status-yellow { box-shadow: var(--shadow-card); border-color: var(--yellow-border); }
 .status-red    { box-shadow: var(--shadow-glow-r); border-color: var(--red-status-border); }
 
-.card-header {
+/* ─── Card hero: origen + número ─────────────────────────────────────────── */
+.card-hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 14px 8px 18px;
+  padding: 16px 14px 12px 18px;
+  gap: 8px;
 }
 
-.order-id {
+/* El badge de tipo es el elemento más visible de la tarjeta */
+.card-type-hero {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.card-id-small {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text-secondary);
-}
-
-.type-badge {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .badge-sala {
@@ -392,15 +396,36 @@ body {
   padding: 3px 8px;
 }
 
-/* Timer — usa Hudson NY para máximo impacto visual de marca */
-.card-timer {
+/* ─── Card footer: timer compacto ────────────────────────────────────────── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 14px 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  transition: border-color 0.6s ease;
+}
+
+.status-footer-green  { border-top-color: var(--green-border); }
+.status-footer-yellow { border-top-color: var(--yellow-border); }
+.status-footer-red    { border-top-color: var(--red-status-border); }
+
+.card-timer-small {
   font-family: var(--font-display);
-  font-size: 52px;
-  letter-spacing: -1px;
-  padding: 2px 18px 12px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
   line-height: 1;
   transition: color 0.6s ease;
   font-variant-numeric: tabular-nums;
+}
+
+.card-tap-hint {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
 }
 
 .status-text-green  { color: var(--green); }
