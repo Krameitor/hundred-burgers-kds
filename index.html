@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hundred Burgers — KDS</title>
+  <meta name="description" content="Sistema de tracking de pedidos para Hundred Burgers. Visualiza comandas en tiempo real, gestiona tiempos de entrega y consulta métricas del restaurante.">
+  <meta name="theme-color" content="#0f0f1a">
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Chart.js CDN (for dashboard) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ─── Navbar ──────────────────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="logo-mark">H</div>
+      <div class="logo-text">
+        HUNDRED
+        <span>BURGERS KDS</span>
+      </div>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <div class="nav-tabs">
+      <!-- Tracker tab -->
+      <button
+        id="tab-tracker"
+        class="nav-tab active"
+        onclick="navigateTo('tracker')"
+        aria-label="Panel de tracking"
+      >
+        🔥 Tracking
+        <span class="tab-badge" id="tab-tracker-badge" style="display:none">0</span>
+      </button>
+
+      <!-- Simulator tab -->
+      <button
+        id="tab-simulator"
+        class="nav-tab"
+        onclick="navigateTo('simulator')"
+        aria-label="Simulador de comandas"
+      >
+        📋 Simulador
+      </button>
+
+      <!-- History tab -->
+      <button
+        id="tab-history"
+        class="nav-tab"
+        onclick="navigateTo('history')"
+        aria-label="Historial de pedidos"
+      >
+        📊 Historial
+      </button>
+
+      <!-- Dashboard tab -->
+      <button
+        id="tab-dashboard"
+        class="nav-tab"
+        onclick="navigateTo('dashboard')"
+        aria-label="Dashboard analítico"
+      >
+        📈 Dashboard
+      </button>
+    </div>
+
+    <!-- Red orders alert badge -->
+    <span class="red-badge-nav" id="red-badge" style="display:none">0</span>
+  </nav>
+
+  <!-- ─── Main content ─────────────────────────────────────────────────────── -->
+  <main class="app-content">
+
+    <!-- TRACKER VIEW -->
+    <section id="view-tracker" role="main" aria-label="Pedidos activos">
+      <!-- Rendered by TrackerView.render() -->
+    </section>
+
+    <!-- SIMULATOR VIEW -->
+    <section id="view-simulator" class="hidden" aria-label="Simulador de comandas">
+      <!-- Rendered by SimulatorView.render() -->
+    </section>
+
+    <!-- HISTORY VIEW -->
+    <section id="view-history" class="hidden" aria-label="Historial de pedidos">
+      <!-- Rendered by HistoryView.render() -->
+    </section>
+
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard" class="hidden" aria-label="Dashboard analítico">
+      <!-- Rendered by DashboardView.render() -->
+    </section>
+
+  </main>
+
+  <!-- ─── Scripts ──────────────────────────────────────────────────────────── -->
+  <!-- Load order matters: data → storage → views → app -->
+  <script src="js/menu-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
