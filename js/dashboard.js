@@ -260,14 +260,14 @@ const DashboardView = (() => {
         datasets: [{
           label: 'Tiempo medio (min)',
           data: values,
-          borderColor: '#00E676',
-          backgroundColor: 'rgba(0,230,118,0.08)',
+          borderColor: '#8a1538',
+          backgroundColor: 'rgba(138,21,56,0.07)',
           borderWidth: 2.5,
           pointBackgroundColor: values.map(v => {
             if (v === null) return 'transparent';
-            if (v >= 15) return '#FF1744';
-            if (v >= 10) return '#FFD600';
-            return '#00E676';
+            if (v >= 15) return '#EF4444';
+            if (v >= 10) return '#EAB308';
+            return '#22C55E';
           }),
           pointRadius: 5,
           pointHoverRadius: 7,
@@ -281,8 +281,8 @@ const DashboardView = (() => {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#16213E',
-            borderColor: '#2a3a5c',
+            backgroundColor: '#111111',
+            borderColor: 'rgba(255,255,255,0.1)',
             borderWidth: 1,
             callbacks: {
               label: ctx => ctx.parsed.y !== null ? `${ctx.parsed.y} min` : 'Sin datos',
@@ -292,11 +292,11 @@ const DashboardView = (() => {
         scales: {
           x: {
             grid: { color: 'rgba(255,255,255,0.04)' },
-            ticks: { color: '#8892B0' },
+            ticks: { color: '#666660', font: { family: 'Gotham, Inter, sans-serif', size: 11 } },
           },
           y: {
             grid: { color: 'rgba(255,255,255,0.04)' },
-            ticks: { color: '#8892B0', callback: v => `${v}m` },
+            ticks: { color: '#666660', font: { family: 'Gotham, Inter, sans-serif', size: 11 }, callback: v => `${v}m` },
             min: 0,
           },
         },
@@ -311,7 +311,7 @@ const DashboardView = (() => {
       afterDraw(chart) {
         if (chart.canvas.id !== 'chart-hourly') return;
         const { ctx: c, chartArea, scales } = chart;
-        [[10, '#FFD600', '10 min'], [15, '#FF1744', '15 min']].forEach(([val, color, label]) => {
+        [[10, '#EAB308', '10 min'], [15, '#EF4444', '15 min']].forEach(([val, color, label]) => {
           const y = scales.y.getPixelForValue(val);
           c.save();
           c.setLineDash([5, 5]);
@@ -325,7 +325,7 @@ const DashboardView = (() => {
           c.setLineDash([]);
           c.globalAlpha = 0.8;
           c.fillStyle = color;
-          c.font = '11px Inter, sans-serif';
+          c.font = '500 11px Gotham, Inter, sans-serif';
           c.fillText(label, chartArea.right - 42, y - 4);
           c.restore();
         });
@@ -344,8 +344,8 @@ const DashboardView = (() => {
         labels: ['Sala', 'Delivery'],
         datasets: [{
           data: [salaCount || 1, deliveryCount || 1],
-          backgroundColor: ['#42A5F5', '#FF7043'],
-          borderColor: '#16213E',
+          backgroundColor: ['#D4CFC8', '#8a1538'],
+          borderColor: '#161616',
           borderWidth: 3,
           hoverOffset: 8,
         }],
@@ -356,8 +356,8 @@ const DashboardView = (() => {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#16213E',
-            borderColor: '#2a3a5c',
+            backgroundColor: '#111111',
+            borderColor: 'rgba(255,255,255,0.1)',
             borderWidth: 1,
           },
         },
@@ -389,7 +389,7 @@ const DashboardView = (() => {
         const val = cell?.value || 0;
         const intensity = maxVal > 0 ? val / maxVal : 0;
         const alpha = 0.1 + intensity * 0.9;
-        const bg = `rgba(0, 230, 118, ${alpha.toFixed(2)})`;
+        const bg = `rgba(138, 21, 56, ${alpha.toFixed(2)})`;
         html += `<div class="hm-cell hm-data" style="background: ${bg}" title="${day} ${h}h: ${val} pedidos">${val > 0 ? val : ''}</div>`;
       });
     });
