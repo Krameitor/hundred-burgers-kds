@@ -292,8 +292,9 @@ body {
 
 .orders-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
+  /* Min 240px allows up to 7 columns on a 1920px screen, 4 on 1024px */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(10px, 1.5vw, 16px);
   align-items: start;
 }
 
@@ -335,16 +336,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 16px 12px 20px;
+  padding: clamp(12px, 1.2vw, 16px) clamp(14px, 1.5vw, 20px);
   gap: 8px;
 }
 
 .card-type-hero {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: clamp(18px, 1.8vw, 24px);
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding: 6px 16px;
+  padding: 4px 12px;
   border-radius: 6px;
   line-height: 1.1;
 }
@@ -362,7 +363,7 @@ body {
 .badge-sm { font-size: 10px; padding: 3px 8px; }
 
 .card-id-small {
-  font-size: 14px;
+  font-size: clamp(12px, 1vw, 14px);
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -372,10 +373,10 @@ body {
 
 /* ─── Items ──────────────────────────────────────────────────────────────── */
 .card-items {
-  padding: 8px 20px 12px;
+  padding: clamp(6px, 1vw, 8px) clamp(14px, 1.5vw, 20px) clamp(10px, 1.2vw, 12px);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(4px, 0.8vw, 8px);
   border-top: 1px solid var(--border-card);
 }
 
@@ -388,9 +389,9 @@ body {
 
 .item-qty {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: clamp(16px, 1.5vw, 20px);
   color: var(--hb-red);
-  min-width: 26px;
+  min-width: 24px;
   line-height: 1.1;
   margin-top: 1px;
 }
@@ -398,22 +399,22 @@ body {
 .item-name {
   color: var(--text-body);
   font-weight: 600;
-  font-size: 16px;
-  line-height: 1.3;
+  font-size: clamp(13px, 1.2vw, 16px);
+  line-height: 1.25;
   letter-spacing: -0.2px;
 }
 
 /* ─── Notes ──────────────────────────────────────────────────────────────── */
 .card-notes {
-  margin: 6px 16px 6px 20px;
-  padding: 8px 12px;
+  margin: 4px clamp(12px, 1.5vw, 16px) 6px clamp(14px, 1.5vw, 20px);
+  padding: 6px 10px;
   background: rgba(202, 138, 4, 0.07);
   border-left: 4px solid var(--yellow);
   border-radius: 0 4px 4px 0;
-  font-size: 13px;
+  font-size: clamp(11px, 1vw, 13px);
   font-weight: 500;
   color: #a16c0b;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 /* ─── Card footer ────────────────────────────────────────────────────────── */
@@ -421,8 +422,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px 14px 20px;
-  margin-top: 8px;
+  padding: clamp(8px, 1vw, 12px) clamp(14px, 1.5vw, 20px);
+  margin-top: auto; /* Push to bottom if cards stretch */
   border-top: 1px solid var(--border-card);
   transition: border-color 0.6s ease, background 0.6s ease;
 }
@@ -432,7 +433,7 @@ body {
 
 .card-timer-small {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: clamp(18px, 1.8vw, 24px);
   letter-spacing: 0.5px;
   line-height: 1;
   transition: color 0.6s ease;
