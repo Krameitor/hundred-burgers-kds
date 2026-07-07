@@ -281,8 +281,10 @@ const DashboardView = (() => {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#111111',
-            borderColor: 'rgba(255,255,255,0.1)',
+            backgroundColor: '#FFFFFF',
+            titleColor: '#8a1538',
+            bodyColor: '#333333',
+            borderColor: 'rgba(138, 21, 56, 0.15)',
             borderWidth: 1,
             callbacks: {
               label: ctx => ctx.parsed.y !== null ? `${ctx.parsed.y} min` : 'Sin datos',
@@ -291,11 +293,11 @@ const DashboardView = (() => {
         },
         scales: {
           x: {
-            grid: { color: 'rgba(255,255,255,0.04)' },
+            grid: { color: 'rgba(0, 0, 0, 0.05)' },
             ticks: { color: '#666660', font: { family: 'Gotham, Inter, sans-serif', size: 11 } },
           },
           y: {
-            grid: { color: 'rgba(255,255,255,0.04)' },
+            grid: { color: 'rgba(0, 0, 0, 0.05)' },
             ticks: { color: '#666660', font: { family: 'Gotham, Inter, sans-serif', size: 11 }, callback: v => `${v}m` },
             min: 0,
           },
@@ -345,7 +347,7 @@ const DashboardView = (() => {
         datasets: [{
           data: [salaCount || 1, deliveryCount || 1],
           backgroundColor: ['#D4CFC8', '#8a1538'],
-          borderColor: '#161616',
+          borderColor: '#FFFFFF',
           borderWidth: 3,
           hoverOffset: 8,
         }],
@@ -356,8 +358,10 @@ const DashboardView = (() => {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#111111',
-            borderColor: 'rgba(255,255,255,0.1)',
+            backgroundColor: '#FFFFFF',
+            titleColor: '#8a1538',
+            bodyColor: '#333333',
+            borderColor: 'rgba(138, 21, 56, 0.15)',
             borderWidth: 1,
           },
         },
